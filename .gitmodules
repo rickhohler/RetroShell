@@ -19,3 +19,6 @@
 [submodule "FileSystemKit"]
 	path = FileSystemKit
 	url = git@github.com:rickhohler/FileSystemKit
+[submodule "RetroTandy"]
+	path = RetroTandy
+	url = git@github.com:rickhohler/RetroTandy.git

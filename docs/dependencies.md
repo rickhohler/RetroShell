@@ -1,8 +1,54 @@
 # Swift Package Dependency Graph
 
-The following diagram visualizes how the **Swift packages** in the RetroShell repository depend on each other (and on external packages).
-Each node represents a Swift package (either a submodule or an external dependency).
-Arrows point from a package to the packages it **depends on**.
+This document provides visualizers for the Swift package dependencies in the RetroShell repository.
+
+## 1. Layered Architecture View
+
+This view groups packages by their role (Implementations, Core, External), making it easier to see the architectural strata.
+
+```mermaid
+graph TD
+    subgraph Platforms ["Platform Implementations"]
+        direction LR
+        RetroApple
+        RetroAtari
+        RetroCommodore
+        RetroMicrosoft
+        RetroSinclair
+        RetroTandy
+    end
+
+    subgraph Core ["Core Framework"]
+        direction LR
+        RetroCore
+        FileSystemKit
+    end
+
+    subgraph External ["External / Third Party"]
+        direction LR
+        StandardFileSystem
+        DesignAlgorithmsKit
+        InventoryKit
+        swift-docc-plugin
+    end
+
+    %% Internal Dependencies
+    RetroApple & RetroAtari & RetroCommodore & RetroMicrosoft & RetroSinclair & RetroTandy --> RetroCore
+    RetroApple & RetroAtari & RetroCommodore & RetroMicrosoft & RetroSinclair & RetroTandy --> FileSystemKit
+    RetroCore --> FileSystemKit
+
+    %% External Dependencies
+    RetroApple & RetroAtari & RetroCommodore & RetroMicrosoft & RetroSinclair & RetroTandy --> StandardFileSystem
+    RetroCore --> StandardFileSystem
+    RetroCore --> DesignAlgorithmsKit
+    RetroCore --> InventoryKit
+    FileSystemKit --> DesignAlgorithmsKit
+    FileSystemKit --> swift-docc-plugin
+```
+
+## 2. Dependency Network (Force Directed)
+
+The strict dependency graph, useful for tracing specific import paths.
 
 ```mermaid
 graph LR
@@ -27,6 +73,10 @@ graph LR
     RetroSinclair --> RetroCore
     RetroSinclair --> StandardFileSystem
 
+    RetroTandy --> FileSystemKit
+    RetroTandy --> RetroCore
+    RetroTandy --> StandardFileSystem
+
     RetroCore --> FileSystemKit
     RetroCore --> StandardFileSystem
     RetroCore --> DesignAlgorithmsKit
@@ -36,16 +86,68 @@ graph LR
     FileSystemKit --> swift-docc-plugin
 ```
 
-## How to read the diagram
+## 3. Class Diagram Association View
 
-- **Submodule packages** (`RetroApple`, `RetroAtari`, `RetroCommodore`, `RetroMicrosoft`, `RetroSinclair`, `RetroCore`, `FileSystemKit`) are the Swift packages defined in each submodule’s `Package.swift`.
-- **External packages** (`StandardFileSystem`, `DesignAlgorithmsKit`, `InventoryKit`, `swift-docc-plugin`) are pulled from other repositories via URL or local path.
-- An arrow `A --> B` means **package A** lists **package B** in its `dependencies` array.
+An alternative view using UML notation, which can be cleaner for dense graphs.
 
-## Why this matters
+```mermaid
+classDiagram
+    direction RL
+    class RetroCore
+    class FileSystemKit
+    class RetroApple
+    class RetroAtari
+    class RetroCommodore
+    class RetroMicrosoft
+    class RetroSinclair
+    class RetroTandy
+    
+    %% External
+    class StandardFileSystem {
+        <<external>>
+    }
+    class DesignAlgorithmsKit {
+        <<external>>
+    }
+    class InventoryKit {
+        <<external>>
+    }
 
-Understanding these relationships helps:
+    %% Relationships
+    RetroApple ..> RetroCore
+    RetroApple ..> FileSystemKit
+    RetroApple ..> StandardFileSystem
+    
+    RetroAtari ..> RetroCore
+    RetroAtari ..> FileSystemKit
+    RetroAtari ..> StandardFileSystem
 
-1. **Dependency management** – know which packages must be updated together.
-2. **Build ordering** – ensure submodules are compiled after their dependencies.
-3. **Impact analysis** – see how a change in one package (e.g., `FileSystemKit`) propagates to others.
+    RetroCommodore ..> RetroCore
+    RetroCommodore ..> FileSystemKit
+    RetroCommodore ..> StandardFileSystem
+    
+    RetroMicrosoft ..> RetroCore
+    RetroMicrosoft ..> FileSystemKit
+    RetroMicrosoft ..> StandardFileSystem
+    
+    RetroSinclair ..> RetroCore
+    RetroSinclair ..> FileSystemKit
+    RetroSinclair ..> StandardFileSystem
+
+    RetroTandy ..> RetroCore
+    RetroTandy ..> FileSystemKit
+    RetroTandy ..> StandardFileSystem
+
+    RetroCore ..> FileSystemKit
+    RetroCore ..> StandardFileSystem
+    RetroCore ..> DesignAlgorithmsKit
+    RetroCore ..> InventoryKit
+    
+    FileSystemKit ..> DesignAlgorithmsKit
+```
+
+## Insights
+
+- **FileSystemKit** is the foundational dependency used by almost everything.
+- **RetroCore** serves as the shared logic layer for all platform implementations.
+- **StandardFileSystem** acts as a bridge for standard FS operations across platforms.
