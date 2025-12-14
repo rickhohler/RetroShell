@@ -89,10 +89,10 @@ When making changes to the template:
    ```bash
    # For patch version
    echo "1.0.1" > VERSION
-   
+
    # For minor version
    echo "1.1.0" > VERSION
-   
+
    # For major version
    echo "2.0.0" > VERSION
    ```
@@ -109,14 +109,14 @@ When making changes to the template:
    ```bash
    # Read the version from VERSION file
    VERSION=$(cat VERSION | tr -d '[:space:]')
-   
+
    # Create an annotated tag
    git tag -a "v${VERSION}" -m "Release version ${VERSION}"
-   
+
    # Push the commit and tag
    git push origin main
    git push origin "v${VERSION}"
-   
+
    # Or push both at once
    git push origin main --tags
    ```
@@ -125,10 +125,10 @@ When making changes to the template:
    ```bash
    # Bump patch version (1.0.0 → 1.0.1)
    ./scripts/bump-version.sh patch
-   
+
    # Bump minor version (1.0.0 → 1.1.0)
    ./scripts/bump-version.sh minor
-   
+
    # Bump major version (1.0.0 → 2.0.0)
    ./scripts/bump-version.sh major
    ```

@@ -111,11 +111,11 @@ This creates a link to your project repository without duplicating the code. Eac
    ```bash
    # Use the project repository name as the directory name
    git submodule add <your-project-repo-url> <project-name>
-   
+
    # Example: Single project
    git submodule add https://github.com/username/my-pet-store-app.git my-pet-store-app
    git submodule update --init --recursive
-   
+
    # Optional: Add additional related projects
    git submodule add https://github.com/username/my-pet-store-api.git my-pet-store-api
    git submodule add https://github.com/username/my-pet-store-admin.git my-pet-store-admin

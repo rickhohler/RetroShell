@@ -123,13 +123,13 @@ See the [README.md](README.md#template-versioning-and-updates) for more details 
    # ... make changes ...
    git push origin main
    cd ..
-   
+
    # Work on second project
    cd <project-name-2>
    # ... make changes ...
    git push origin main
    cd ..
-   
+
    # Update all submodule references
    git add <project-name-1> <project-name-2>
    git commit -m "Update project submodules"

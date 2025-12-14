@@ -1,0 +1,21 @@
+[submodule "RetroCore"]
+	path = RetroCore
+	url = git@github.com:rickhohler/RetroCore
+[submodule "RetroApple"]
+	path = RetroApple
+	url = git@github.com:rickhohler/RetroApple
+[submodule "RetroMicrosoft"]
+	path = RetroMicrosoft
+	url = git@github.com:rickhohler/RetroMicrosoft
+[submodule "RetroAtari"]
+	path = RetroAtari
+	url = git@github.com:rickhohler/RetroAtari
+[submodule "RetroSinclair"]
+	path = RetroSinclair
+	url = git@github.com:rickhohler/RetroSinclair
+[submodule "RetroCommodore"]
+	path = RetroCommodore
+	url = git@github.com:rickhohler/RetroCommodore
+[submodule "FileSystemKit"]
+	path = FileSystemKit
+	url = git@github.com:rickhohler/FileSystemKit

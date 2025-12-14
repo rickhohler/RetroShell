@@ -7,7 +7,6 @@ This directory contains private notes, thoughts, and ideas about the project.
 - Personal notes and thoughts
 - Ideas and brainstorming
 - Research notes
-- Todo lists
 - Meeting notes
 - Any other private information
 

@@ -42,7 +42,7 @@ This includes:
 - Works with ANY platform (web, mobile, desktop, etc.)
 - Makes NO assumptions about the project's technical stack
 
-**When working on the template or shell project structure:**
+When working on the template or shell project structure:
 - Do NOT add technology-specific examples
 - Do NOT assume specific languages or frameworks
 - Keep all documentation and scripts technology-agnostic
@@ -57,6 +57,7 @@ This includes:
 - Private notes (`notes/`)
 - Build/deployment scripts (`scripts/`)
 - Configuration templates (`config/`)
+- **Project Submodule** (`{project-name}/`)
 
 **Does NOT contain:**
 - CONTRIBUTING.md
@@ -150,7 +151,7 @@ This shell project is based on a template that uses semantic versioning. The ver
 
 ## Project Structure
 
-```
+```text
 {project-name}-shell/
 ├── README.md              # Main project description
 ├── SETUP.md               # Setup instructions
@@ -158,13 +159,13 @@ This shell project is based on a template that uses semantic versioning. The ver
 ├── .gitignore            # Git ignore rules
 ├── .gitmodules           # Git submodule configuration
 ├── docs/                 # Private project documentation
-│   └── AGENT.md         # This file
+│   └── AGENT.md         # This file (moved to docs/agents/AGENT.md)
 ├── ai/                   # ALL AI documents (conversations, prompts, etc.)
 ├── notes/                # Private notes
 ├── scripts/              # Utility scripts
 ├── config/               # Configuration templates
 └── {project-name}/       # Git submodule - actual project code
-                         # Directory name matches project repository name
+                          # Directory name matches project repository name
 ```
 
 ## Key Principles
@@ -187,7 +188,6 @@ This shell project is based on a template that uses semantic versioning. The ver
 ## Common Tasks
 
 ### Working with Submodules
-
 ```bash
 # Update a submodule
 cd <project-name>
@@ -198,13 +198,11 @@ git commit -m "Update <project-name> submodule"
 ```
 
 ### Adding Documentation
-
 - Add to `docs/` directory (private project documentation)
 - Keep project-specific documentation organized
 - Document important decisions
 
 ### Storing AI Conversations
-
 - Store in `ai/` directory
 - Organize by date or topic
 - **NEVER commit to the project submodule**
