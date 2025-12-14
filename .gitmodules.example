@@ -1,0 +1,19 @@
+# Example: Single project submodule
+# Use the project repository name as the directory name
+[submodule "my-pet-store-app"]
+	path = my-pet-store-app
+	url = https://github.com/username/my-pet-store-app.git
+	branch = main
+
+# Example: Multiple related projects
+# You can add multiple submodules for related projects
+# [submodule "my-pet-store-api"]
+# 	path = my-pet-store-api
+# 	url = https://github.com/username/my-pet-store-api.git
+# 	branch = main
+#
+# [submodule "my-pet-store-admin"]
+# 	path = my-pet-store-admin
+# 	url = https://github.com/username/my-pet-store-admin.git
+# 	branch = main
+
